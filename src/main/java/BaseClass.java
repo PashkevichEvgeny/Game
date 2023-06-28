@@ -1,32 +1,35 @@
 public abstract class BaseClass{
-    private int someValue1;
-    private int someValue2;
+    private static int count = 0;
+    private int healthPoint;  // Очки здоровья
+    private int attack;       // Сила удара
+    private int defence;      // Броня
     private String someValue3;
-    private String someValue4;
-
-    private BaseClass(int someValue1, int someValue2, String someValue3, String someValue4) {
-        this.someValue1 = someValue1;
-        this.someValue2 = someValue2;
-        this.someValue3 = someValue3;
-        this.someValue4 = someValue4;
-    }
-    public BaseClass(){
-    }
-
-    public int getSomeValue1() {
-        return someValue1;
+    private String namePerson;
+    BaseClass(){
+        this.defence = 10;
+        int id = count++;
+        this.namePerson = "DefaultName" + id;
+        this.healthPoint = 50;
+        this.attack = 10;
+        this.someValue3 = "Very Interesting Information";
     }
 
-    public void setSomeValue1(int someValue1) {
-        this.someValue1 = someValue1;
+
+    public int getHealthPoint() {
+        return healthPoint;
     }
 
-    public int getSomeValue2() {
-        return someValue2;
+    public int setHealthPoint(int healthPoint) {
+        this.healthPoint = healthPoint;
+        return healthPoint;
     }
 
-    public void setSomeValue2(int someValue2) {
-        this.someValue2 = someValue2;
+    public int getAttack() {
+        return attack;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
     }
 
     public String getSomeValue3() {
@@ -37,17 +40,25 @@ public abstract class BaseClass{
         this.someValue3 = someValue3;
     }
 
-    public String getSomeValue4() {
-        return someValue4;
+    public String getNamePerson() {
+        return namePerson;
     }
 
-    public void setSomeValue4(String someValue4) {
-        this.someValue4 = someValue4;
+    public void setNamePerson(String namePerson) {
+        this.namePerson = namePerson;
     }
-    public void someAction(int someValue1){
-        System.out.println("Hello world" + someValue1 + someValue2);
+    public void sayName(){
+        System.out.println("Меня зовут " + namePerson);
     }
-    public String someAction2(){
-        return someValue3;
+    public int toEat(){
+        return setHealthPoint(getHealthPoint() + 10);
+    }
+
+    public int getDefence() {
+        return defence;
+    }
+
+    public void setDefence(int defence) {
+        this.defence = defence;
     }
 }

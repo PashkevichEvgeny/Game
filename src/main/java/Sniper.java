@@ -1,15 +1,15 @@
 public class Sniper extends SecondClass{
     private int sniperValue;
     private int sniperValue2;
-    private String sniperValue3;
+    private String nameOfProfession = "Снайпер";
 
-    Sniper(int sniperValue, int sniperValue2, String sniperValue3) {
+    Sniper(int sniperValue, int sniperValue2, String nameOfProfession) {
         this.sniperValue = sniperValue;
         this.sniperValue2 = sniperValue2;
-        this.sniperValue3 = sniperValue3;
+        this.nameOfProfession = nameOfProfession;
     }
     public Sniper(){
-
+        super();
     }
 
     public int getSniperValue() {
@@ -28,18 +28,18 @@ public class Sniper extends SecondClass{
         this.sniperValue2 = sniperValue2;
     }
 
-    public String getSniperValue3() {
-        return sniperValue3;
+    public String getNameOfProfession() {
+        return nameOfProfession;
     }
 
-    public void setSniperValue3(String sniperValue3) {
-        this.sniperValue3 = sniperValue3;
+    public void setNameOfProfession(String nameOfProfession) {
+        this.nameOfProfession = nameOfProfession;
     }
 
-    public void someSniperAction(int sniperValue){
-        System.out.println("Hello world" + sniperValue);
+    public void sayProfession(){
+        System.out.println("Моя работа " + nameOfProfession);
     }
     public String someSniperAction2(){
-        return sniperValue3;
+        return nameOfProfession;
     }
 }

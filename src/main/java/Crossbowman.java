@@ -1,4 +1,4 @@
-public class Crossbowman {
+public class Crossbowman extends SecondClass{
     private int crossbowmanValue;
     private int crossbowmanValue2;
     private String crossbowmanValue3;

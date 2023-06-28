@@ -4,6 +4,7 @@ public class FirstClass extends BaseClass{
     private String someExtraValue3;
 
     private FirstClass(int someExtraValue, int someExtraValue2, String someExtraValue3) {
+        super();
         this.someExtraValue = someExtraValue;
         this.someExtraValue2 = someExtraValue2;
         this.someExtraValue3 = someExtraValue3;

@@ -1,4 +1,4 @@
-public class Sorcerer {
+public class Sorcerer extends ThirdClass{
     private int sorcererValue;
     private int sorcererValue2;
     private String sorcererValue3;
@@ -9,7 +9,6 @@ public class Sorcerer {
         this.sorcererValue3 = sorcererValue3;
     }
     public Sorcerer(){
-
     }
 
     public int getSorcererValue() {

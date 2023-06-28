@@ -1,4 +1,4 @@
-public class Monk {
+public class Monk extends ThirdClass{
     private int monkValue;
     private int monkValue2;
     private String monkValue3;

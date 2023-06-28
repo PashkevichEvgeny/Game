@@ -1,4 +1,4 @@
-public class Spearman {
+public class Spearman extends SecondClass{
     private int spearmanValue;
     private int spearmanValue2;
     private String spearmanValue3;

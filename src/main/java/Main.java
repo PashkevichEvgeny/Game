@@ -17,11 +17,19 @@ public class Main {
         var crossbowman1 = new Crossbowman(1, 1, "Арбалетчик");
         var monk1 = new Monk(1, 1, "Монах");
         System.out.println(peasant1.somePeasantAction2());
-        System.out.println(sniper1.someAction2());
         System.out.println(sorcerer1.someSorcererAction(10));
         System.out.println(spearman1.setSpearmanValue(10));
         System.out.println(crossbowman1.getCrossbowmanValue3());
-        System.out.println(monk1.someMonkAction2());
+        sniper1.setNamePerson("Снайрер Вася");
+        sniper1.sayName();
+        sniper1.sayCategory();
+        sniper1.sayProfession();
+        System.out.println(sniper1.getHealthPoint());
+        sniper1.toEat();
+        System.out.println(sniper1.getHealthPoint());
+        monk1.sayName();
+        System.out.println(monk1.getHealthPoint());
+        spearman1.sayName();
     }
 
 }

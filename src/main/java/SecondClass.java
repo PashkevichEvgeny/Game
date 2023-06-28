@@ -1,14 +1,9 @@
 public class SecondClass extends BaseClass{
     private int someExtraValue;
     private int someExtraValue2;
-    private String someExtraValue3;
+    private String nameOfCategory = "Бойевик";
 
-    private SecondClass(int someExtraValue, int someExtraValue2, String someExtraValue3) {
-        this.someExtraValue = someExtraValue;
-        this.someExtraValue2 = someExtraValue2;
-        this.someExtraValue3 = someExtraValue3;
-    }
-    public SecondClass(){
+    public SecondClass() {
     }
 
     public int getSomeExtraValue() {
@@ -27,17 +22,17 @@ public class SecondClass extends BaseClass{
         this.someExtraValue2 = someExtraValue2;
     }
 
-    public String getSomeExtraValue3() {
-        return someExtraValue3;
+    public String getNameOfCategory() {
+        return nameOfCategory;
     }
 
-    public void setSomeExtraValue3(String someExtraValue3) {
-        this.someExtraValue3 = someExtraValue3;
+    public void setNameOfCategory(String nameOfCategory) {
+        this.nameOfCategory = nameOfCategory;
     }
-    public void someExtraAction(int someExtraValue){
-        System.out.println("Hello world" + someExtraValue + someExtraValue2);
+    public void sayCategory(){
+        System.out.println("Моя сфера деятельности " + nameOfCategory);
     }
     public String someExtraAction2(){
-        return getSomeExtraValue3();
+        return getNameOfCategory();
     }
 }
