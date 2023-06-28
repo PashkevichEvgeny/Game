@@ -11,6 +11,11 @@ public class Peasant extends FirstClass{
     public Peasant(){
     }
 
+    @Override
+    public void die() {
+
+    }
+
     public int getPeasantValue() {
         return peasantValue;
     }

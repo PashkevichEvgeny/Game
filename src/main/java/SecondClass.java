@@ -6,6 +6,11 @@ public class SecondClass extends BaseClass{
     public SecondClass() {
     }
 
+    @Override
+    public void die() {
+
+    }
+
     public int getSomeExtraValue() {
         return someExtraValue;
     }

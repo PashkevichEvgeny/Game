@@ -12,6 +12,11 @@ public class Spearman extends SecondClass{
 
     }
 
+    @Override
+    public void die() {
+
+    }
+
     public int getSpearmanValue() {
         return spearmanValue;
     }

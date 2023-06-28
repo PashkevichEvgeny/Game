@@ -11,6 +11,11 @@ public class ThirdClass extends BaseClass{
     public ThirdClass(){
     }
 
+    @Override
+    public void die() {
+
+    }
+
     public int getSomeExtraValue() {
         return someExtraValue;
     }

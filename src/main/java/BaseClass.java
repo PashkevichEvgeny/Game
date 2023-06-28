@@ -1,5 +1,7 @@
+import java.util.Random;
 public abstract class BaseClass{
-    private static int count = 0;
+    private static int count;
+    int setCount() { return ++count; }
     private int healthPoint;  // Очки здоровья
     private int attack;       // Сила удара
     private int defence;      // Броня
@@ -7,8 +9,7 @@ public abstract class BaseClass{
     private String namePerson;
     BaseClass(){
         this.defence = 10;
-        int id = count++;
-        this.namePerson = "DefaultName" + id;
+        this.namePerson = "DefaultName" + setCount();
         this.healthPoint = 50;
         this.attack = 10;
         this.someValue3 = "Very Interesting Information";
@@ -60,5 +61,19 @@ public abstract class BaseClass{
 
     public void setDefence(int defence) {
         this.defence = defence;
+    }
+    public void GetDamage(int damage) {
+        if (this.getHealthPoint() - damage > 0) {
+            this.setHealthPoint(this.getHealthPoint() - damage);
+        }
+        else {
+            this.setHealthPoint(0);
+            die(); }
+    }
+    public abstract void die();
+
+    public void Attack(BaseClass target) {
+        int damage = new Random().nextInt(10, 60);
+        target.GetDamage(damage);
     }
 }

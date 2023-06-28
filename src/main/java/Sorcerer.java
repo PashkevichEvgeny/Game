@@ -11,6 +11,11 @@ public class Sorcerer extends ThirdClass{
     public Sorcerer(){
     }
 
+    @Override
+    public void die() {
+
+    }
+
     public int getSorcererValue() {
         return sorcererValue;
     }

@@ -11,6 +11,11 @@ public class Crossbowman extends SecondClass{
     public Crossbowman(){
     }
 
+    @Override
+    public void die() {
+
+    }
+
     public int getCrossbowmanValue() {
         return crossbowmanValue;
     }

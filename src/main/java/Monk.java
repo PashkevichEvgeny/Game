@@ -12,6 +12,11 @@ public class Monk extends ThirdClass{
 
     }
 
+    @Override
+    public void die() {
+
+    }
+
     public int getMonkValue() {
         return monkValue;
     }

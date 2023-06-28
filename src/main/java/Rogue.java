@@ -12,6 +12,11 @@ public class Rogue extends FirstClass{
 
     }
 
+    @Override
+    public void die() {
+
+    }
+
     public int getRougeValue() {
         return rougeValue;
     }

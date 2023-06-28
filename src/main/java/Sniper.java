@@ -12,6 +12,12 @@ public class Sniper extends SecondClass{
         super();
     }
 
+    @Override
+    public void die() {
+        sayName();
+        System.out.println("и меня убили(");
+    }
+
     public int getSniperValue() {
         return sniperValue;
     }

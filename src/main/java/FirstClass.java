@@ -12,6 +12,11 @@ public class FirstClass extends BaseClass{
     public FirstClass(){
     }
 
+    @Override
+    public void die() {
+
+    }
+
     public int getSomeExtraValue() {
         return someExtraValue;
     }
