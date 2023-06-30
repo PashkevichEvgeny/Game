@@ -1,19 +1,20 @@
-public class Sorcerer extends ThirdClass{
+public class Sorcerer extends MagicianHero {
     private int sorcererValue;
     private int sorcererValue2;
     private String sorcererValue3;
 
-    Sorcerer(int sorcererValue, int sorcererValue2, String sorcererValue3) {
+    Sorcerer(int healthPoint, int attack, int defence, String namePerson, int someExtraValue, int someExtraValue2, String someExtraValue3, int sorcererValue, int sorcererValue2, String sorcererValue3) {
+        super(healthPoint, attack, defence, namePerson, someExtraValue, someExtraValue2, someExtraValue3);
         this.sorcererValue = sorcererValue;
         this.sorcererValue2 = sorcererValue2;
         this.sorcererValue3 = sorcererValue3;
     }
-    public Sorcerer(){
-    }
-
+    Sorcerer(){super(10, 10, 10, "Маг", 10, 10, "");}
     @Override
-    public void die() {
-
+    public void step(){}
+    @Override
+    public String getInfo(){
+        return getNamePerson();
     }
 
     public int getSorcererValue() {

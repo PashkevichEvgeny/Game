@@ -1,20 +1,23 @@
-public class FirstClass extends BaseClass{
+public class FootSoldierHero extends BaseHero {
     private int someExtraValue;
     private int someExtraValue2;
     private String someExtraValue3;
 
-    private FirstClass(int someExtraValue, int someExtraValue2, String someExtraValue3) {
-        super();
+    FootSoldierHero(int healthPoint, int attack, int defence, String namePerson, int someExtraValue, int someExtraValue2, String someExtraValue3) {
+        super(healthPoint, attack, defence, namePerson);
         this.someExtraValue = someExtraValue;
         this.someExtraValue2 = someExtraValue2;
         this.someExtraValue3 = someExtraValue3;
     }
-    public FirstClass(){
-    }
-
     @Override
-    public void die() {
-
+    public String die() {
+        return "";
+    }
+    @Override
+    public void step(){}
+    @Override
+    public String getInfo(){
+        return "";
     }
 
     public int getSomeExtraValue() {

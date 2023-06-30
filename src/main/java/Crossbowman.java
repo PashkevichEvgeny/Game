@@ -1,48 +1,24 @@
-public class Crossbowman extends SecondClass{
+public class Crossbowman extends ShooterHero {
     private int crossbowmanValue;
     private int crossbowmanValue2;
-    private String crossbowmanValue3;
+    private String typePersons;
 
-    Crossbowman(int crossbowmanValue, int crossbowmanValue2, String crossbowmanValue3) {
+    Crossbowman(int healthPoint, int attack, int defence, String namePerson, int someExtraValue, int someExtraValue2, String nameOfCategory, int crossbowmanValue, int crossbowmanValue2, String typePersons) {
+        super(healthPoint, attack, defence, namePerson, someExtraValue, nameOfCategory);
         this.crossbowmanValue = crossbowmanValue;
         this.crossbowmanValue2 = crossbowmanValue2;
-        this.crossbowmanValue3 = crossbowmanValue3;
-    }
-    public Crossbowman(){
+        this.typePersons = typePersons;
     }
 
+    public Crossbowman() {
+        super(50,10,10,"Арбалетчик",55,"Стрелец");
+        setDamage(getDamage() + getExtraDamage());
+    }
     @Override
-    public void die() {
-
+    public void step(){}
+    @Override
+    public String getInfo(){
+        return getNamePerson();
     }
 
-    public int getCrossbowmanValue() {
-        return crossbowmanValue;
-    }
-
-    public void setCrossbowmanValue(int crossbowmanValue) {
-        this.crossbowmanValue = crossbowmanValue;
-    }
-
-    public int getCrossbowmanValue2() {
-        return crossbowmanValue2;
-    }
-
-    public void setCrossbowmanValue2(int crossbowmanValue2) {
-        this.crossbowmanValue2 = crossbowmanValue2;
-    }
-
-    public String getCrossbowmanValue3() {
-        return crossbowmanValue3;
-    }
-
-    public void setCrossbowmanValue3(String crossbowmanValue3) {
-        this.crossbowmanValue3 = crossbowmanValue3;
-    }
-    public void someCrossbowmanAction(int crossbowmanValue){
-        System.out.println("Hello world" + crossbowmanValue2);
-    }
-    public String someCrossbowmanAction(){
-        return crossbowmanValue3;
-    }
 }

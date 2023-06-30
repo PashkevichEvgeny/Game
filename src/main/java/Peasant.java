@@ -1,19 +1,20 @@
-public class Peasant extends FirstClass{
+public class Peasant extends FootSoldierHero {
     private int peasantValue;
     private int peasantValue2;
     private String peasantValue3;
-
-    Peasant(int peasantValue, int peasantValue2, String peasantValue3) {
+    Peasant(int healthPoint, int attack, int defence, String namePerson, int someExtraValue, int someExtraValue2, String someExtraValue3, int peasantValue, int peasantValue2, String peasantValue3) {
+        super(healthPoint, attack, defence, namePerson, someExtraValue, someExtraValue2, someExtraValue3);
         this.peasantValue = peasantValue;
         this.peasantValue2 = peasantValue2;
         this.peasantValue3 = peasantValue3;
     }
-    public Peasant(){
-    }
-
+    Peasant(){
+        super(10, 10, 10, "Крестьянин", 10, 10, "");}
     @Override
-    public void die() {
-
+    public void step(){}
+    @Override
+    public String getInfo(){
+        return getNamePerson();
     }
 
     public int getPeasantValue() {

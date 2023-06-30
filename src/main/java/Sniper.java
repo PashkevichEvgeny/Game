@@ -1,21 +1,23 @@
-public class Sniper extends SecondClass{
+public class Sniper extends ShooterHero {
     private int sniperValue;
     private int sniperValue2;
     private String nameOfProfession = "Снайпер";
 
-    Sniper(int sniperValue, int sniperValue2, String nameOfProfession) {
+    Sniper(int healthPoint, int damage, int defence, String namePerson, int someExtraValue, int someExtraValue2, String nameOfCategory, int sniperValue, int sniperValue2, String nameOfProfession) {
+        super(healthPoint, damage, defence, namePerson, someExtraValue, nameOfCategory);
         this.sniperValue = sniperValue;
         this.sniperValue2 = sniperValue2;
         this.nameOfProfession = nameOfProfession;
     }
-    public Sniper(){
-        super();
+    Sniper(){
+        super(50, 10, 10 , "Стрелок", 10, "Стрелец");
+        setDamage(getDamage() + getExtraDamage());
     }
-
     @Override
-    public void die() {
-        sayName();
-        System.out.println("и меня убили(");
+    public void step(){}
+    @Override
+    public String getInfo(){
+        return getNamePerson();
     }
 
     public int getSniperValue() {

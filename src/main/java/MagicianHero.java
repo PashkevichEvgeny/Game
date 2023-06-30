@@ -1,19 +1,24 @@
-public class ThirdClass extends BaseClass{
+public class MagicianHero extends BaseHero {
     private int someExtraValue;
     private int someExtraValue2;
     private String someExtraValue3;
 
-    private ThirdClass(int someExtraValue, int someExtraValue2, String someExtraValue3) {
+    public MagicianHero(int healthPoint, int attack, int defence, String namePerson, int someExtraValue, int someExtraValue2, String someExtraValue3) {
+        super(healthPoint, attack, defence, namePerson);
         this.someExtraValue = someExtraValue;
         this.someExtraValue2 = someExtraValue2;
         this.someExtraValue3 = someExtraValue3;
     }
-    public ThirdClass(){
-    }
 
     @Override
-    public void die() {
-
+    public String die() {
+        return "-".repeat(this.getHealthPoint());
+    }
+    @Override
+    public void step(){}
+    @Override
+    public String getInfo(){
+        return "";
     }
 
     public int getSomeExtraValue() {

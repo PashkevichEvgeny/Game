@@ -1,28 +1,23 @@
-public class Spearman extends SecondClass{
-    private int spearmanValue;
+public class Spearman extends FootSoldierHero {
     private int spearmanValue2;
     private String spearmanValue3;
 
-    Spearman(int spearmanValue, int spearmanValue2, String spearmanValue3) {
-        this.spearmanValue = spearmanValue;
+    public Spearman(int healthPoint, int attack, int defence, String namePerson, int someExtraValue, int someExtraValue2, String someExtraValue3, int spearmanValue2, String spearmanValue3) {
+        super(healthPoint, attack, defence, namePerson, someExtraValue, someExtraValue2, someExtraValue3);
         this.spearmanValue2 = spearmanValue2;
         this.spearmanValue3 = spearmanValue3;
     }
-    public Spearman(){
 
-    }
-
+    Spearman(){
+        super(10, 10, 10, "Копейщик", 10, 10, "");}
     @Override
-    public void die() {
-
-    }
-
-    public int getSpearmanValue() {
-        return spearmanValue;
+    public void step(){}
+    @Override
+    public String getInfo(){
+        return getNamePerson();
     }
 
     public boolean setSpearmanValue(int spearmanValue) {
-        this.spearmanValue = spearmanValue;
         return false;
     }
 
