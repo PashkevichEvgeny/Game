@@ -1,4 +1,6 @@
+import java.util.List;
+
 public interface GameInterface {
-    void step();
+    void step(List<BaseHero> oppositeTeam);
     String getInfo();
 }

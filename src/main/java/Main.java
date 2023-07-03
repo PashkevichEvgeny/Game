@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**Задание1
  * Крестьянин, разбойник, копейщик, снайпер, арбалетчик, колдун, монах.
@@ -20,14 +22,31 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) {
-        List<BaseHero> teamGood = GameMechanics.fillTeam();
-        List<BaseHero> teamEvil = GameMechanics.fillTeam();
+        List<BaseHero> teamGood = fillTeam();
+        List<BaseHero> teamEvil = fillTeam();
         for (int i = 0; i < teamGood.size(); i++) {
             System.out.printf("%s VS %s\n",
                     teamGood.get(i).getInfo(),
-                    teamEvil.get(i).getInfo());
+                    teamEvil.get(i).getFields().y);
         }
-        int res = GameMechanics.testBattle(teamGood, teamEvil, true) - GameMechanics.testBattle(teamEvil, teamGood, false);
-        System.out.println("Итог Битвы: " + (res > 0 ? "Победа добра" : "Зло торжествует"));
+    }
+    public static List<BaseHero> fillTeam(){
+        int commandSize = 10;
+        List<BaseHero> team = new ArrayList<>();
+        for (int i = 0; i < commandSize; i++) {
+            int cnt = new Random().nextInt(2);
+            switch (cnt) {
+                case 0: {
+                    team.add(new Rogue("", 1000, 100));
+                    break;
+                }
+                case 1: {
+                    team.add(new Monk("", 1, 1));
+                    break;
+                }
+            }
+        }
+        return team;
     }
 }
+
