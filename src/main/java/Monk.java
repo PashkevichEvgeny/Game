@@ -1,12 +1,7 @@
-import java.util.List;
-
-public class Monk extends MagicianHero {
-    public Monk(String namePerson, int x, int y)
-    {
-        super("Монах", 0, 0);
+public class Monk extends MagicianHero{
+    public Monk(String namePerson, int x, int y) {
+        super(namePerson, 10, 10, x, y);
     }
-    @Override
-    public void step(){}
     @Override
     public String getInfo(){
         return namePerson;

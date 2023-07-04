@@ -1,10 +1,5 @@
-import java.util.List;
-
-public class Rogue extends FootSoldierHero {
-    Rogue(String namePerson, int x, int y){ super("Разбойник", 0, 0);}
-    @Override
-    public void step(){}
-    @Override
+public class Rogue extends BaseHero{
+    Rogue(String namePerson, int x, int y){ super(namePerson, 10, 10, x, y);}
     public String getInfo(){
         return namePerson;
     }

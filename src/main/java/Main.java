@@ -22,31 +22,18 @@ import java.util.Random;
  */
 public class Main {
     public static void main(String[] args) {
-        List<BaseHero> teamGood = fillTeam();
-        List<BaseHero> teamEvil = fillTeam();
-        for (int i = 0; i < teamGood.size(); i++) {
-            System.out.printf("%s VS %s\n",
-                    teamGood.get(i).getInfo(),
-                    teamEvil.get(i).getFields().y);
+        List<BaseHero> teamGood = GameMechanic.fillTeam(false);
+        List<BaseHero> teamEvil = GameMechanic.fillTeam(true);
+        teamGood.get(5).setFields(new Field(5, 5));   // Проверочное выдвижение персонажа
+        for (BaseHero baseHero : teamGood) {
+            System.out.printf("%s %d ", baseHero.getInfo(), baseHero.healthPoint);
+            baseHero.step(teamEvil);
         }
-    }
-    public static List<BaseHero> fillTeam(){
-        int commandSize = 10;
-        List<BaseHero> team = new ArrayList<>();
-        for (int i = 0; i < commandSize; i++) {
-            int cnt = new Random().nextInt(2);
-            switch (cnt) {
-                case 0: {
-                    team.add(new Rogue("", 1000, 100));
-                    break;
-                }
-                case 1: {
-                    team.add(new Monk("", 1, 1));
-                    break;
-                }
-            }
+        System.out.println("----------------------------------------------------");
+        for (BaseHero baseHero : teamEvil) {
+            System.out.printf("%s ", baseHero.getInfo());
+            baseHero.step(teamGood);
         }
-        return team;
     }
 }
 
