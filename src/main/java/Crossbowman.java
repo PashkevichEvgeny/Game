@@ -1,9 +1,8 @@
 import java.util.List;
-public class Monk extends MagicianHero{
-    public Monk(String namePerson, int x, int y) {
-        super(namePerson, 10, 10, 3, x, y);
+public class Crossbowman extends ShooterHero{
+    public Crossbowman(String namePerson, int x, int y) {
+        super(namePerson, 10, 10, 10, 3, x, y);
     }
-    @Override
     public String getInfo(){
         return namePerson;
     }

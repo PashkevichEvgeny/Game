@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import static java.lang.Math.*;
 
@@ -5,39 +6,50 @@ public abstract class BaseHero implements GameInterface {
     protected String namePerson;
     protected int healthPoint;
     protected int damage;
+    protected int initiate;
     private Field fields;
-    public BaseHero(String namePerson, int healthPoint, int damage, int x, int y) {
+
+    public BaseHero(String namePerson, int healthPoint, int damage, int initiate, int x, int y) {
         this.namePerson = namePerson;
         this.healthPoint = healthPoint;
         this.damage = damage;
+        this.initiate = initiate;
         this.setFields(new Field(x, y));
     }
-    public String getName(){
+
+    public String getName() {
         return namePerson;
     }
+
     @Override
     public void step(List<BaseHero> oppositeTeam) {
-        int x1 = getFields().getX();
-        int y1 = getFields().getY();
-        int x2, y2;
-        double distance;
-        double nearestDistanceEnemy = pow(10, 2);
-        String nameNearestEnemy = "";
-        for (BaseHero enemy: oppositeTeam) {
-            x2 = enemy.getFields().getX();
-            y2 = enemy.getFields().getY();
-            distance = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
-            if (distance < nearestDistanceEnemy){
-                nearestDistanceEnemy = distance;
-                nameNearestEnemy = enemy.getName();
-            }
-        }
-        System.out.println("Расстояние до противника " + nearestDistanceEnemy + ", его имя " + nameNearestEnemy);
+        BaseHero nearestEnemy = lookForEnemy(oppositeTeam);
+        System.out.printf("%s ближайший противник %s на расстоянии %.2f\n", getName(), nearestEnemy.getName(), distance(nearestEnemy));
     }
+
     public Field getFields() {
         return fields;
     }
+
     public void setFields(Field fields) {
         this.fields = fields;
+    }
+
+    public BaseHero lookForEnemy(List<BaseHero> oppositeTeam) {
+        double dis;
+        BaseHero enemy = oppositeTeam.get(0);
+        double nearestDistance = distance(enemy);
+        for (BaseHero enemyItem : oppositeTeam) {
+            dis = distance(enemyItem);
+            if (dis < nearestDistance) {
+                nearestDistance = dis;
+                enemy = enemyItem;
+            }
+        }
+        return enemy;
+    }
+    public double distance(BaseHero player2){
+        return sqrt(pow(player2.getFields().getX() - getFields().getX(), 2)
+                  + pow(player2.getFields().getY() - getFields().getY(), 2));
     }
 }

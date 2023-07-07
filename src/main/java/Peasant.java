@@ -1,9 +1,9 @@
 import java.util.List;
-public class Monk extends MagicianHero{
-    public Monk(String namePerson, int x, int y) {
-        super(namePerson, 10, 10, 3, x, y);
+
+public class Peasant extends PeonHero {
+    public Peasant(String namePerson, int x, int y) {
+        super(namePerson, 10, 1, 5, x, y);
     }
-    @Override
     public String getInfo(){
         return namePerson;
     }

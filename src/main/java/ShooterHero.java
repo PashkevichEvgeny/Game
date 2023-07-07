@@ -1,7 +1,9 @@
 import java.util.List;
-public class MagicianHero extends BaseHero{
-    public MagicianHero(String namePerson, int healthPoint, int damage, int initiate, int x, int y) {
+public class ShooterHero extends BaseHero{
+    protected int amountArrows;
+    public ShooterHero(String namePerson, int healthPoint, int damage, int initiate, int amountArrows, int x, int y) {
         super(namePerson, healthPoint, damage, initiate, x, y);
+        this.amountArrows = amountArrows;
     }
     public String getName(){
         return namePerson;

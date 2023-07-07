@@ -1,6 +1,6 @@
 import java.util.List;
-public class MagicianHero extends BaseHero{
-    public MagicianHero(String namePerson, int healthPoint, int damage, int initiate, int x, int y) {
+public class PeonHero extends BaseHero{
+    public PeonHero(String namePerson, int healthPoint, int damage, int initiate, int x, int y) {
         super(namePerson, healthPoint, damage, initiate, x, y);
     }
     public String getName(){

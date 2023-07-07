@@ -1,6 +1,6 @@
 import java.util.List;
-public class Monk extends MagicianHero{
-    public Monk(String namePerson, int x, int y) {
+public class Sorcerer extends MagicianHero{
+    public Sorcerer(String namePerson, int x, int y) {
         super(namePerson, 10, 10, 3, x, y);
     }
     @Override
