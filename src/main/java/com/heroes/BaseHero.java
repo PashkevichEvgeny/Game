@@ -37,7 +37,7 @@ public abstract class BaseHero implements GameInterface {
                 getInfo(),
                 position.distance(getPosition(), victim.getPosition()),
                 victim.getInfo());
-        doDamage(victim);
+        if (getHealthPoint() > 0) doDamage(victim);
         System.out.println(victim.healthPoint);
     }
     public int[] getPosition() {

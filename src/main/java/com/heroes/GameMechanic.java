@@ -33,4 +33,22 @@ public class GameMechanic {
         }
         return team;
     }
+    public static void letsBattle(List<BaseHero> team1, List<BaseHero> team2){
+        List<BaseHero> mergedTeam = new ArrayList<>();
+        mergedTeam.addAll(team1);
+        mergedTeam.addAll(team2);
+        mergedTeam.sort((o1, o2) -> {
+            if (o2.getInitiate() - o1.getInitiate() == 0) {
+                return o2.getInitiate() - o1.getInitiate() - new Random().nextInt(2);
+            }
+            return o2.getInitiate() - o1.getInitiate();
+        });
+        for (BaseHero baseHero : mergedTeam) {
+            if (team1.contains(baseHero)) {
+                baseHero.step(team1, team2);
+            } else {
+                baseHero.step(team2, team1);
+            }
+        }
+    }
 }
