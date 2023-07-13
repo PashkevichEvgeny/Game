@@ -1,4 +1,4 @@
-package com.heroes;
+package game.model;
 
 import java.util.List;
 
