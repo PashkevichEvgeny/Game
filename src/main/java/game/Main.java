@@ -14,11 +14,11 @@ public class Main {
         Scanner in = new Scanner(System.in);
         String makeStep = "";
         while (!makeStep.equals("q")) {
-        if (isAlived(teamGood)) {
+        if (isAlive(teamGood)) {
             System.out.println("Bad wins!");
             break;
         }
-        if (isAlived(teamEvil)) {
+        if (isAlive(teamEvil)) {
             System.out.println("Good wins!");
             break;
         }
@@ -27,7 +27,7 @@ public class Main {
         makeStep = in.nextLine();
         }
     }
-    public static boolean isAlived(List<BaseHero> team){
+    public static boolean isAlive(List<BaseHero> team){
         team.forEach((v) -> countDead[0] += (BaseHero.State.Dead.equals(v.state))? 1:0);
         if (countDead[0] == 10) {
             countDead[0] = 0;
