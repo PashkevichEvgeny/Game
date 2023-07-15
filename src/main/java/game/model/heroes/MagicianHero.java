@@ -36,5 +36,12 @@ public class MagicianHero extends BaseHero {
             }
             return o1.gethP() - o2.gethP();
         });               // получает список своих отсортированный по степени живости
+        // Наводит порчу на других магов, или сам получает боевой сглаз
+        int r = new Random().nextInt(10);
+        BaseHero seekingMagician = oppositeTeam.get(r);
+        if (seekingMagician instanceof MagicianHero && State.Stand.equals(seekingMagician.state)) {
+            if (r % 2 == 0) seekingMagician.getDamage(damage);
+            else getDamage(damage);
+        }
     }
 }

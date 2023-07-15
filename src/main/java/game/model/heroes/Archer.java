@@ -2,7 +2,6 @@ package game.model.heroes;
 
 import game.model.Arena;
 import game.model.BaseHero;
-import game.model.GameMechanic;
 
 import java.util.List;
 public class Archer extends ShooterHero {

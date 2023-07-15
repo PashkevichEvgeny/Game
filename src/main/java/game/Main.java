@@ -7,8 +7,8 @@ import java.util.*;
 
 public class Main {
         public static final int[] countDead = {0};
-        public static final List<BaseHero> teamEvil = GameMechanic.fillTeam(true);
         public static final List<BaseHero> teamGood = GameMechanic.fillTeam(false);
+        public static final List<BaseHero> teamEvil = GameMechanic.fillTeam(true);
         public static final List<BaseHero> allTeam = GameMechanic.mergedTeam(teamGood, teamEvil);
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);

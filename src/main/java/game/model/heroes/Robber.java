@@ -2,9 +2,7 @@ package game.model.heroes;
 
 import game.model.Arena;
 import game.model.BaseHero;
-import game.model.GameMechanic;
 
-import java.util.Arrays;
 import java.util.List;
 public class Robber extends InfantryHero {
     public Robber(String namePerson, Arena position){
@@ -22,11 +20,7 @@ public class Robber extends InfantryHero {
     public void step(List<BaseHero> ourTeam, List<BaseHero> oppositeTeam) {
         if (State.Dead.equals(this.state)) return;
         BaseHero victim = lookForEnemy(oppositeTeam);
-        if (victim == null) {
-            System.out.println("Никого нет ");
-            return;
-        }
-        if (State.Dead.equals(this.state)) return;
+        if (victim == null) return;
         List<Integer> lineX = Arena.line(position.getX(), victim.getPosition().getX());
         List<Integer> lineY = Arena.line(position.getY(), victim.getPosition().getY());
         if (Arena.freeLine(lineX, ourTeam, victim, true)) {

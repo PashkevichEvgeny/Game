@@ -37,9 +37,9 @@ public abstract class BaseHero implements GameInterface {
     }
 
     public String getInfo(){
-        return String.format("N: %s %.5s ♡: %.2s ♤: %s ⛨: %d ин:%d",
+        return String.format("N: %s %s ♡: %.2s ♤: %s ⛨: %d ин:%d",
                 this.name,
-                this.getClass().getSuperclass().getSimpleName().replace("Hero", "") + " ",
+                this.getClass().getSuperclass().getSimpleName().replace("Hero", ""),
                 state.equals(State.Dead)? "✟": this.hP,
                 this.damage,
                 this.defense,

@@ -27,6 +27,7 @@ public class Monk extends MagicianHero {
     }
     public void step(List<BaseHero> ourTeam, List<BaseHero> oppositeTeam) {
         if (State.Dead.equals(this.state)) return;
+        super.step(ourTeam, oppositeTeam);
         ourTeam.sort((o1, o2) -> {
             if (o1.gethP() - o2.gethP() == 0) {
                 return o1.gethP() - o2.gethP() - new Random().nextInt(2);
@@ -41,12 +42,13 @@ public class Monk extends MagicianHero {
             }
         }
         if (wia == null) {
-            getDamage(1);
+            getDamage(damage);
             return;
         }
-        if (State.Dead.equals(wia.state)) {
+        if (State.Dead.equals(wia.state) && new Random().nextInt(3) == 1) {
             wia.state = State.Stand;
             wia.getDamage(-damage);
+            getDamage(3);
         }
         else {
             if (wia.gethP() + damage > wia.getMaxHP()) wia.getDamage(wia.getMaxHP() - wia.gethP());

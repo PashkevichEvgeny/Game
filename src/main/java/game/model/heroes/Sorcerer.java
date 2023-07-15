@@ -27,6 +27,7 @@ public class Sorcerer extends MagicianHero {
     }
     public void step(List<BaseHero> ourTeam, List<BaseHero> oppositeTeam) {
         if (State.Dead.equals(this.state)) return;
+        super.step(ourTeam, oppositeTeam);
         ourTeam.sort((o1, o2) -> {
             if (o1.gethP() - o2.gethP() == 0) {
                 return o1.gethP() - o2.gethP() - new Random().nextInt(2);

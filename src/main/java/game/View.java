@@ -2,16 +2,30 @@ package game;
 
 import game.model.*;
 
-public class View {
+import java.util.Comparator;
 
-    private static int step = 1;
-    private static final int[] l = {0};
-    private static final String top10 = String.join("", "┌" + "─┬".repeat(9) + "─┐");
-    private static final String midl10 = String.join("", "├" + "─┼".repeat(9) + "─┤");
-    private static final String bottom10 = String.join("", "└" + "─┴".repeat(9) + "─┘");
+public class View {
+    private static int step;
+    private static final int[] maxWidth = {0};
+    private static final String top10;
+    private static final String middle10;
+    private static final String bottom10;
+    private static final String nameTeams;
+    static {
+        Main.teamGood.forEach((v) -> maxWidth[0] = Math.max(maxWidth[0], v.getInfo().length()));  // Самая длиная строка l[0]
+        step = 1;
+        top10    = String.join("", "┌" + "─┬".repeat(9) + "─┐");
+        middle10 = String.join("", "├" + "─┼".repeat(9) + "─┤");
+        bottom10 = String.join("", "└" + "─┴".repeat(9) + "─┘");
+        nameTeams = Colors.BRIGHT_WHITE + Colors.GREEN_BACKGROUND
+                + " * Good Guys * " + Colors.RESET + " ".repeat(maxWidth[0] - 7)
+                + Colors.BRIGHT_WHITE + Colors.BLUE_BACKGROUND
+                + " * Bad Guys * " + Colors.RESET;
+    }
+
     private static void tabSetter(int cnt, int max){
-        int dif = max - cnt + 2;
-        if (dif>0) System.out.printf("%" + dif + "s", ":\t"); else System.out.print(":\t");
+        int dif = max - cnt + 4;
+        System.out.printf((dif > 0) ? " ".repeat(dif) + "-\t" : "-\t");
     }
     private static String getChar(int y, int x){
         String out = " ";
@@ -20,53 +34,34 @@ public class View {
             letter = human.toString().charAt(0);                             // first letter of super class name
             if (human.getPosition().x == x && human.getPosition().y == y) {
                 if (BaseHero.State.Dead.equals(human.state)) {
-                    if (Main.teamGood.contains(human)) out = (AnsiColors.ANSI_GREEN_BACKGROUND + AnsiColors.ANSI_BRIGHT_YELLOW + letter + AnsiColors.ANSI_RESET);
-                    if (Main.teamEvil.contains(human)) out = (AnsiColors.ANSI_BLUE_BACKGROUND + AnsiColors.ANSI_BRIGHT_YELLOW + letter + AnsiColors.ANSI_RESET);
+                    out = Main.teamGood.contains(human) ?
+                            Colors.BRIGHT_YELLOW_ON_GREEN + letter + Colors.RESET :
+                            Colors.BRIGHT_YELLOW_ON_BLUE + letter + Colors.RESET;
                 } else {
-                    if (Main.teamGood.contains(human)) out = (AnsiColors.ANSI_GREEN + letter + AnsiColors.ANSI_RESET);
-                    if (Main.teamEvil.contains(human)) out = (AnsiColors.ANSI_BLUE + letter + AnsiColors.ANSI_RESET);
+                    out = Main.teamGood.contains(human) ?
+                            Colors.GREEN + letter + Colors.RESET : Colors.BLUE + letter + Colors.RESET;
                 }
             }
         }
         return "|" + out;
     }
     public static void view() {
-        System.out.print(AnsiColors.ANSI_YELLOW + ((step == 1)?"First step":"Step" + step) + AnsiColors.ANSI_RESET);
+        System.out.print(Colors.YELLOW + (step == 1 ? "First step " : "Step " + step) + Colors.RESET);
         step++;
-        Main.allTeam.forEach((v) -> l[0] = Math.max(l[0], v.getInfo().length()));   // Самая длиная строка l[0]
-        System.out.println("_".repeat(l[0]*2));
-        System.out.print(top10 + "    ");
-        System.out.print(AnsiColors.ANSI_BRIGHT_WHITE + AnsiColors.ANSI_GREEN_BACKGROUND
-                + "Good Guys"
-                + AnsiColors.ANSI_RESET);
-        System.out.print(" ".repeat(l[0]-5));
-        System.out.println("\t" + AnsiColors.ANSI_BLUE_BACKGROUND + AnsiColors.ANSI_BRIGHT_WHITE
-                + "Bad Guys"
-                + AnsiColors.ANSI_RESET);
-        for (int i = 1; i < 11; i++) System.out.print(getChar(1, i));
-        System.out.print("|    ");
-        System.out.print(Main.teamGood.get(0).getInfo());
-        tabSetter(Main.teamGood.get(0).getInfo().length(), l[0]);
-        System.out.println(Main.teamEvil.get(0).getInfo());
-        System.out.println(midl10);
+        System.out.println("_ ".repeat(maxWidth[0] + 10));
+        System.out.println();
+        Main.teamGood.sort(Comparator.comparingInt(o -> o.getInfo().charAt(10))); // Сортировка для вывода по порядку
+        Main.teamEvil.sort(Comparator.comparingInt(o -> o.getInfo().charAt(10)));
 
-        for (int i = 2; i < 10; i++) {
-            for (int j = 1; j < 11; j++) {
-                System.out.print(getChar(i, j));
-            }
-            System.out.print("|    ");
-            System.out.print(Main.teamGood.get(i-1).getInfo());
-            tabSetter(Main.teamGood.get(i-1).getInfo().length(), l[0]);
-            System.out.println(Main.teamEvil.get(i-1).getInfo());
-            System.out.println(midl10);
+        for (int i = 1; i < 11; i++) {
+            if (i == 1) System.out.println(top10 + "    " + nameTeams);     // Крышка решетки и Названия команд
+            for (int j = 1; j < 11; j++) System.out.print(getChar(i, j));     // Клетки поля с инициалами персонажей
+            System.out.print("|    ");                                        // Вертикальная линия между рядов
+            System.out.print(Main.teamGood.get(i - 1).getInfo());             // Инфо о первой команде
+            tabSetter(Main.teamGood.get(i - 1).getInfo().length(), maxWidth[0]); // Табуляция между командами
+            System.out.println(Main.teamEvil.get(i - 1).getInfo());           // Инфо о второй команде
+            System.out.println((i == 10) ? bottom10: middle10);                 // Дно решетки
         }
-        for (int j = 1; j < 11; j++) {
-            System.out.print(getChar(10, j));
-        }
-        System.out.print("|    ");
-        System.out.print(Main.teamGood.get(9).getInfo());
-        tabSetter(Main.teamGood.get(9).getInfo().length(), l[0]);
-        System.out.println(Main.teamEvil.get(9).getInfo());
-        System.out.println(bottom10);
     }
 }
+

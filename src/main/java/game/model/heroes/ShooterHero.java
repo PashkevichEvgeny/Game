@@ -28,9 +28,9 @@ public class ShooterHero extends BaseHero {
         return name;
     }
     public String getInfo(){
-        return super.getInfo()  + " ➹:" +  this.amountArrows;
+        return super.getInfo()  + " " + "|".repeat(this.amountArrows);
     }
-    @Override
+    // ➹:
     public void step(List<BaseHero> ourTeam, List<BaseHero> oppositeTeam) {
     }
 }
