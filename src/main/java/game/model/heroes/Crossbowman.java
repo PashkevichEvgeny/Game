@@ -2,6 +2,7 @@ package game.model.heroes;
 
 import game.model.Arena;
 import game.model.BaseHero;
+import game.model.GameMechanic;
 
 import java.util.List;
 public class Crossbowman extends ShooterHero {
@@ -10,10 +11,10 @@ public class Crossbowman extends ShooterHero {
                 10,
                 10,
                 10,
-                10,
+                1,
                 State.Stand,
                 position,
-                3);
+                5);
         this.setInitiate(this.getInitiate() + 2);
     }
     public String getInfo(){
@@ -23,6 +24,14 @@ public class Crossbowman extends ShooterHero {
         return name;
     }
     public void step(List<BaseHero> ourTeam, List<BaseHero> oppositeTeam) {
-        super.step(ourTeam, oppositeTeam);
+        if (State.Dead.equals(this.state)) return;
+        if (this.amountArrows < 1) {
+            this.getDamage(1);
+            return;
+        }
+        BaseHero victim = lookForEnemy(oppositeTeam);
+        if (victim == null) return;
+        victim.getDamage(damage);
+        this.amountArrows--;
     }
 }

@@ -13,12 +13,12 @@ public class GameMechanic {
         for (int i = 0; i < commandSize; i++) {
             int coordX = 1, coordY = i + 1;
             if (side) coordX = 10;
-            String prefix = ((side)?"A":"B") + i;
+            String prefix = ((side)?"B":"A") + i;
             int cnt = new Random().nextInt(8);
             switch (cnt) {
                 case 0 -> team.add(new Peasant("Батрак" + prefix, new Arena(coordX, coordY)));
                 case 1 -> team.add(new Sorcerer("Колдуй" + prefix, new Arena(coordX, coordY)));
-                case 2 -> team.add(new Monk("Монахь" + prefix, new Arena(coordX, coordY)));
+                case 2 -> team.add(new Monk("Монахъ" + prefix, new Arena(coordX, coordY)));
                 case 3 -> team.add(new Robber("Разбой" + prefix, new Arena(coordX, coordY)));
                 case 4 -> team.add(new Crossbowman("Арбале" + prefix, new Arena(coordX, coordY)));
                 case 5 -> team.add(new Archer("Лучник" +  prefix, new Arena(coordX, coordY)));

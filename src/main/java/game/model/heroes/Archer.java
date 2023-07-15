@@ -2,6 +2,7 @@ package game.model.heroes;
 
 import game.model.Arena;
 import game.model.BaseHero;
+import game.model.GameMechanic;
 
 import java.util.List;
 public class Archer extends ShooterHero {
@@ -10,7 +11,7 @@ public class Archer extends ShooterHero {
                 10,
                 10,
                 10,
-                10,
+                2,
                 State.Stand,
                 position,
                 3);
@@ -19,11 +20,16 @@ public class Archer extends ShooterHero {
     public String getName(){
         return name;
     }
-    @Override
     public void step(List<BaseHero> ourTeam, List<BaseHero> oppositeTeam) {
-        if (this.amountArrows < 1) return;                                    // Если есть стрелы
-        super.step(ourTeam, oppositeTeam);                                    // ищет ближайшего противиника и наносит урон ему
-        for (BaseHero item: ourTeam) {                                        //
+        if (State.Dead.equals(this.state)) return;
+        if (this.amountArrows < 1) {
+            this.getDamage(1);
+            return;
+        }
+        BaseHero victim = lookForEnemy(oppositeTeam);
+        if (victim == null) return;
+        victim.getDamage(damage);
+        for (BaseHero item: ourTeam) {
             if (item instanceof Peasant && State.Stand.equals(item.state)) {  // Ищет в команде свободного крестьянина
                 item.state = State.Busy;                                      // и поручает ему дело - принести стрелу
                 return;
@@ -33,7 +39,7 @@ public class Archer extends ShooterHero {
     }
     @Override
     public String getInfo(){
-        return super.getInfo() + " ➹:" +  this.amountArrows;
+        return super.getInfo();
     }
 }
 

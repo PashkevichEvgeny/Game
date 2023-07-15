@@ -28,13 +28,9 @@ public class ShooterHero extends BaseHero {
         return name;
     }
     public String getInfo(){
-        return super.getInfo();
+        return super.getInfo()  + " ➹:" +  this.amountArrows;
     }
+    @Override
     public void step(List<BaseHero> ourTeam, List<BaseHero> oppositeTeam) {
-        if (State.Dead.equals(this.state)) return;                      // если мерт, то тихо лежит
-        super.step(ourTeam, oppositeTeam);
-    }
-    public String toString(){
-        return super.toString();
     }
 }

@@ -4,13 +4,16 @@ import game.model.Arena;
 import game.model.BaseHero;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Random;
+
 public class Monk extends MagicianHero {
     public Monk(String namePerson, Arena position) {
         super(namePerson,
                 10,
                 10,
                 10,
-                5,
+                1,
                 State.Stand,
                 position);
         this.setInitiate(this.getInitiate() + 2);
@@ -23,13 +26,31 @@ public class Monk extends MagicianHero {
         return name;
     }
     public void step(List<BaseHero> ourTeam, List<BaseHero> oppositeTeam) {
-        super.step(ourTeam, oppositeTeam);
-        BaseHero wia = ourTeam.get(0);                                                    // лечит всех своих, ставит на ноги даже убитых
-        if (wia.gethP() + damage > wia.getMaxHP()) damage = wia.getMaxHP() - wia.gethP();
-        wia.getDamage(-damage);
-        if (wia.gethP() > 0 && State.Dead.equals(wia.state)) {
+        if (State.Dead.equals(this.state)) return;
+        ourTeam.sort((o1, o2) -> {
+            if (o1.gethP() - o2.gethP() == 0) {
+                return o1.gethP() - o2.gethP() - new Random().nextInt(2);
+            }
+            return o1.gethP() - o2.gethP();
+        });               // получает список своих отсортированный по степени живости
+        BaseHero wia = null;
+        for (BaseHero itemWia: ourTeam) {                       // ищет самого раненого, но еще живого и лечит его
+            if (itemWia.gethP() < itemWia.getMaxHP() && !Objects.equals(itemWia.getName(), getName())){
+                wia = itemWia;
+                break;
+            }
+        }
+        if (wia == null) {
+            getDamage(1);
+            return;
+        }
+        if (State.Dead.equals(wia.state)) {
             wia.state = State.Stand;
-//            System.out.println(getName() + " - Вставай, сын мой, " + wia.getName());
+            wia.getDamage(-damage);
+        }
+        else {
+            if (wia.gethP() + damage > wia.getMaxHP()) wia.getDamage(wia.getMaxHP() - wia.gethP());
+            else wia.getDamage(-damage);
         }
     }
 }

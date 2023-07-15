@@ -23,7 +23,8 @@ public class Peasant extends KholopHero {
         return name;
     }
     public void step(List<BaseHero> ourTeam, List<BaseHero> oppositeTeam) {
-        super.step(ourTeam, oppositeTeam);
-        if (State.Busy.equals(this.state)) this.state = State.Stand;      // пришел, отдыхает, ждет дальнейших указаний
+        if (State.Dead.equals(this.state)) return;
+        if (State.Busy.equals(this.state)) this.state = State.Stand;
+        // пришел, отдыхает, ждет дальнейших указаний
     }
 }

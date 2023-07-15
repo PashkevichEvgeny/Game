@@ -51,30 +51,11 @@ public abstract class BaseHero implements GameInterface {
         return maxHP;
     }
 
-    @Override
-    public void step(List<BaseHero> ourTeam, List<BaseHero> oppositeTeam) {
-        BaseHero victim = lookForEnemy(oppositeTeam);                   // Иначе ищет ближнего противника
-        if (victim != null) victim.getDamage(damage);                                       // И наносит ему вред
-//        if (State.Dead.equals(victim.state)) System.out.println(getName() + " убил " + victim.getName());
-    }
     public Arena getPosition() {
         return this.position;
     }
     public void setPosition(Arena position) {
         this.position = position;
-    }
-    public BaseHero lookForEnemy(List<BaseHero> oppositeTeam) {
-        BaseHero enemy = null;
-        double nearestDistance = 10 * 10;
-        for (BaseHero enemyItem : oppositeTeam) {
-            if (!State.Dead.equals(enemyItem.state)
-                    && position.distance(getPosition(), enemyItem.getPosition()) < nearestDistance)
-            {
-                nearestDistance = position.distance(getPosition(), enemyItem.getPosition());
-                enemy = enemyItem;
-            }
-        }
-        return enemy;
     }
     public enum State{
             Stand, Busy, Dead
@@ -84,7 +65,6 @@ public abstract class BaseHero implements GameInterface {
         if (this.hP <= 0) {
             this.hP = 0;
             this.state = State.Dead;
-//            System.out.println("Убили " + getInfo());
         }
     }
 
@@ -96,5 +76,15 @@ public abstract class BaseHero implements GameInterface {
     }
     public String toString(){
         return (String) String.valueOf(getClass().getSuperclass()).subSequence(24, 25);
+//        return String.valueOf(getName().charAt(7));
+    }
+    public BaseHero lookForEnemy(List<BaseHero> oppositeTeam) {
+        oppositeTeam.sort((o1, o2) -> (int) (Arena.distance(o1.getPosition(), getPosition()) - Arena.distance(o2.getPosition(), getPosition())));
+        for (BaseHero enemyItem: oppositeTeam) {
+            if (!BaseHero.State.Dead.equals(enemyItem.state)) {
+                return enemyItem;
+            }
+        }
+        return null;
     }
 }

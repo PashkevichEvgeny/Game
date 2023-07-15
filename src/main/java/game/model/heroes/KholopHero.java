@@ -27,8 +27,7 @@ public class KholopHero extends BaseHero {
     public String getInfo(){
         return super.getInfo();
     }
+    @Override
     public void step(List<BaseHero> ourTeam, List<BaseHero> oppositeTeam) {
-        if (State.Dead.equals(this.state)) return;                      // если мерт, то тихо лежит
-        super.step(ourTeam, oppositeTeam);
     }
 }

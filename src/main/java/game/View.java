@@ -19,9 +19,13 @@ public class View {
         for (BaseHero human: Main.allTeam) {
             letter = human.toString().charAt(0);                             // first letter of super class name
             if (human.getPosition().x == x && human.getPosition().y == y) {
-                if (Main.teamGood.contains(human)) out = (AnsiColors.ANSI_GREEN + letter + AnsiColors.ANSI_RESET);
-                if (Main.teamEvil.contains(human)) out = (AnsiColors.ANSI_BLUE + letter + AnsiColors.ANSI_RESET);
-                if (BaseHero.State.Dead.equals(human.state)) out = (AnsiColors.ANSI_RED + letter + AnsiColors.ANSI_RESET);
+                if (BaseHero.State.Dead.equals(human.state)) {
+                    if (Main.teamGood.contains(human)) out = (AnsiColors.ANSI_GREEN_BACKGROUND + AnsiColors.ANSI_BRIGHT_YELLOW + letter + AnsiColors.ANSI_RESET);
+                    if (Main.teamEvil.contains(human)) out = (AnsiColors.ANSI_BLUE_BACKGROUND + AnsiColors.ANSI_BRIGHT_YELLOW + letter + AnsiColors.ANSI_RESET);
+                } else {
+                    if (Main.teamGood.contains(human)) out = (AnsiColors.ANSI_GREEN + letter + AnsiColors.ANSI_RESET);
+                    if (Main.teamEvil.contains(human)) out = (AnsiColors.ANSI_BLUE + letter + AnsiColors.ANSI_RESET);
+                }
             }
         }
         return "|" + out;
@@ -32,9 +36,13 @@ public class View {
         Main.allTeam.forEach((v) -> l[0] = Math.max(l[0], v.getInfo().length()));   // Самая длиная строка l[0]
         System.out.println("_".repeat(l[0]*2));
         System.out.print(top10 + "    ");
-        System.out.print(AnsiColors.ANSI_GREEN+":\tGreen side"+AnsiColors.ANSI_RESET);
-        System.out.print(" ".repeat(l[0]-9));
-        System.out.println(AnsiColors.ANSI_BLUE+"Blue side"+AnsiColors.ANSI_RESET);
+        System.out.print(AnsiColors.ANSI_BRIGHT_WHITE + AnsiColors.ANSI_GREEN_BACKGROUND
+                + "Good Guys"
+                + AnsiColors.ANSI_RESET);
+        System.out.print(" ".repeat(l[0]-5));
+        System.out.println("\t" + AnsiColors.ANSI_BLUE_BACKGROUND + AnsiColors.ANSI_BRIGHT_WHITE
+                + "Bad Guys"
+                + AnsiColors.ANSI_RESET);
         for (int i = 1; i < 11; i++) System.out.print(getChar(1, i));
         System.out.print("|    ");
         System.out.print(Main.teamGood.get(0).getInfo());
